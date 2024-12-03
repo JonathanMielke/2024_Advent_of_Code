@@ -8,8 +8,6 @@ def get_two_lists(file_path_input) -> (list[int], list[int]):
         tmp = line.split("   ")
         list1.append(int(tmp[0]))
         list2.append(int(tmp[1]))
-    print(list1)
-    print(list2)
     return list1, list2
 
 
@@ -25,10 +23,19 @@ def get_list_distances(list1: list[int], list2: list[int]) -> int:
     return sum(new_list)
 
 
+def get_list_similarity(list1: list[int], list2: list[int]) -> int:
+    similarity_list = []
+    for number in list1:
+        times_in_list = list2.count(number)
+        similarity_list.append(times_in_list * number)
+
+    return sum(similarity_list)
+
+
 def main():
     list1, list2 = get_two_lists("./input.txt")
-    distance = get_list_distances(list1, list2)
-    print(distance)
+    print(f"This is the distance of the two lists: {get_list_distances(list1, list2)}")
+    print(f"This is the similarity of the two lists: {get_list_similarity(list1, list2)}")
 
 
 if __name__ == '__main__':
